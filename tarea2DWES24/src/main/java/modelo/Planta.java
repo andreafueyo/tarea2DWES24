@@ -8,7 +8,6 @@ public class Planta {
 	
 	
 	
-	
 	public Planta(String codigo, String nombre_comun, String nombre_cientifico) {
 		super();
 		this.codigo = codigo;

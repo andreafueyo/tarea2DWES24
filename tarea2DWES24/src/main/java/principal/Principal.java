@@ -23,7 +23,7 @@ public class Principal {
 		
 		Scanner in = new Scanner (System.in);
 		System.out.println("Dame el código de la nueva planta.");
-		String codigo = in.nextLine().toUpperCase();
+		String codigo = in.nextLine().trim().toUpperCase();
 		System.out.println("Dame el nombre común de la nueva planta.");
 		String nombre_comun = in.nextLine();
 		System.out.println("Dame el nombre científico de la nueva planta.");
@@ -42,7 +42,7 @@ public class Principal {
 		
 		try {
 			
-			fis = new FileInputStream("src/main/resources/db.propeties");
+			fis = new FileInputStream("src/main/resources/db.properties");
 			prop.load(fis);
 			url = prop.getProperty("url");
 			usuario = prop.getProperty("usuario");
@@ -53,11 +53,16 @@ public class Principal {
 			
 			con = DriverManager.getConnection(url, usuario, password);
 			
-			String sql = "INSERT INTO plantas(codigo, nombrecomun, cnombrecientifico) VALUES ("+nueva.getCodigo()+", " +nueva.getNombre_comun()+", " + nueva.getNombre_cientifico()+")";
-		
-			PreparedStatement ps = con.prepareStatement(sql);
-			ps.execute();
+			//String sql = "INSERT INTO plantas(codigo, nombrecomun, cnombrecientifico) VALUES ("+nueva.getCodigo()+", " +nueva.getNombre_comun()+", " + nueva.getNombre_cientifico()+")";
 			
+			String sql2 = "INSERT INTO plantas(codigo, nombrecomun, nombrecientifico) VALUES (?,?,?)";
+			PreparedStatement ps = con.prepareStatement(sql2);
+			ps.setString(1, nueva.getCodigo());
+			ps.setString(2, nueva.getNombre_comun());
+			ps.setString(3, nueva.getNombre_cientifico());
+			
+			ps.executeUpdate();
+			ps.close();
 			con.close();
 			
 		}
