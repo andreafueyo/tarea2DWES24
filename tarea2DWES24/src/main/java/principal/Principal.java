@@ -36,9 +36,9 @@ public class Principal {
 		Properties prop = null;
 		FileInputStream fis;
 		
-		String url = "jdbc:mysql://localhost:3306/basededatos";
-		String usuario = "root";
-		String password = "";
+		String url;
+		String usuario;
+		String password;
 		
 		try {
 			
@@ -50,12 +50,14 @@ public class Principal {
 			m.setUrl(url);
 			m.setUser(usuario);
 			m.setPassword(password);
+			
 			con = DriverManager.getConnection(url, usuario, password);
 			
 			String sql = "INSERT INTO plantas(codigo, nombrecomun, cnombrecientifico) VALUES ("+nueva.getCodigo()+", " +nueva.getNombre_comun()+", " + nueva.getNombre_cientifico()+")";
 		
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.execute();
+			
 			con.close();
 			
 		}
