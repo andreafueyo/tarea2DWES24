@@ -5,9 +5,7 @@ public class Planta {
 	private String codigo;
 	private String nombre_comun;
 	private String nombre_cientifico;
-	
-	
-	
+		
 	public Planta(String codigo, String nombre_comun, String nombre_cientifico) {
 		super();
 		this.codigo = codigo;
