@@ -9,6 +9,12 @@ import java.util.Properties;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
 
+import dao.CredencialDAOImpl;
+import dao.EjemplarDAOImpl;
+import dao.MensajeDAOImpl;
+import dao.PersonaDAOImpl;
+import dao.PlantaDAOImpl;
+
 public class ConexionBD {
 
 	private Connection con;
@@ -50,6 +56,28 @@ public class ConexionBD {
 		}
 	
 	}
+	
+	
+	public PlantaDAOImpl getPlantaDAOImpl() {
+		return new PlantaDAOImpl(con);
+	}
+	
+	public CredencialDAOImpl getCredencialDAOImpl() {
+		return new CredencialDAOImpl(con);
+	}
+	
+	public MensajeDAOImpl getMensajeDAOImpl() {
+		return new MensajeDAOImpl(con);
+	}
+	
+	public PersonaDAOImpl getPersonaDAOImpl() {
+		return new PersonaDAOImpl(con);
+	}
+	
+	public EjemplarDAOImpl getEjemplarDAOImpl() {
+		return new EjemplarDAOImpl(con);
+	}
+
 	
 	public static ConexionBD getCon() {
 	
