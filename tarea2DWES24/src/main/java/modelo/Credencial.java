@@ -14,6 +14,11 @@ public class Credencial {
 		this.password = password;
 		this.fk_persona = fk_persona;
 	}
+	
+	public Credencial(String usuario, String password) {
+		this.usuario = usuario;
+		this.password = password;
+	}
 
 	public int getId() {
 		return id;

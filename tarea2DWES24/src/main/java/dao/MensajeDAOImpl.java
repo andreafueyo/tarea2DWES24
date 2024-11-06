@@ -46,15 +46,16 @@ public class MensajeDAOImpl {
 //	}
 	
 	public List<Mensaje> findByTipo(String tipo) { 
+		List<Mensaje> lMensajes = new ArrayList<Mensaje>();
 		try {
 			ps = con.prepareStatement("select * from mensajes INNER JOIN plantas ON mensajes.fk_ejemplaresMensajes = plantas.codigo WHERE plantas.nombreComun =?"); 
 			ps.setString(1, tipo);
 			rs = ps.executeQuery();
-			List<Mensaje> lMensajes = new ArrayList<Mensaje>();
-			if (rs.next()) {
+
+			while (rs.next()) {
 				lMensajes.add(new Mensaje(rs.getInt(1), rs.getDate(2).toLocalDate(), rs.getString(3), rs.getInt(4), rs.getInt(5)));
-				return lMensajes;
 			}
+			return lMensajes;
 		} catch (SQLException e) {
 			System.out.println("error al consultar por tipo " + e.getMessage());
 	
@@ -63,15 +64,16 @@ public class MensajeDAOImpl {
 	}
 
 	public List<Mensaje> findByEjemplar(int idEjemplar) { 
+		List<Mensaje> lMensajes = new ArrayList<Mensaje>();
 		try {
 			ps = con.prepareStatement("select * from mensajes INNER JOIN plantas ON mensajes.fk_ejemplaresMensajes = plantas.codigo WHERE plantas.codigo=?"); 
 			ps.setInt(1, idEjemplar);
 			rs = ps.executeQuery();
-			List<Mensaje> lMensajes = new ArrayList<Mensaje>();
-			if (rs.next()) {
+
+			while (rs.next()) {
 				lMensajes.add(new Mensaje(rs.getInt(1), rs.getDate(2).toLocalDate(), rs.getString(3), rs.getInt(4), rs.getInt(5)));
-				return lMensajes;
 			}
+			return lMensajes;
 		} catch (SQLException e) {
 			System.out.println("error al consultar por ejemplar " + e.getMessage());
 	

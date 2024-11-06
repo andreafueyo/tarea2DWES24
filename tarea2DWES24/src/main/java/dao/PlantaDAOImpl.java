@@ -60,14 +60,15 @@ public class PlantaDAOImpl {
 		return null;
 	}
 	public List<Planta> findAll() {
+		List<Planta> lPlantas = new ArrayList<Planta>();
 		try {
 			ps = con.prepareStatement("select * from plantas order by codigo");
 			rs = ps.executeQuery();
-			List<Planta> lPlantas = new ArrayList<Planta>();
-			if (rs.next()) {
+			
+			while (rs.next()) {
 				lPlantas.add(new Planta(rs.getString(1), rs.getString(2), rs.getString(3)));
-				return lPlantas;
 			}
+			return lPlantas;
 
 		} catch (SQLException e) {
 			System.out.println("error al obtener todas las plantas " + e.getMessage());

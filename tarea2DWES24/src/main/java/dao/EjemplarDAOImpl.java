@@ -33,16 +33,16 @@ public class EjemplarDAOImpl {
 	}
 
 	public List<Ejemplar> findByTipo(String tipos) {
+		List<Ejemplar> lEjemplar = new ArrayList<Ejemplar>();
 		try {
-			ps = con.prepareStatement("select * from ejemplares INNER JOIN plantas ON ejemplares.fk_planta = plantas.codigo WHERE plantas.nombreComun IN (?)");
+			ps = con.prepareStatement("select * from ejemplares INNER JOIN plantas ON ejemplares.fk_planta = plantas.codigo WHERE plantas.codigo IN (?)");
 			ps.setString(1, tipos);
 			rs = ps.executeQuery();
-			List<Ejemplar> lEjemplar = new ArrayList<Ejemplar>();
-			if (rs.next()) {
-				lEjemplar.add(new Ejemplar(rs.getInt(1), rs.getString(2), rs.getString(3)));
-				return lEjemplar;
-			}
 
+			while (rs.next()) {
+				lEjemplar.add(new Ejemplar(rs.getInt(1), rs.getString(2), rs.getString(3)));
+			}
+			return lEjemplar;
 		} catch (SQLException e) {
 			System.out.println("error al consultar por tipo " + e.getMessage());
 

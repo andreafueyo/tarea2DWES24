@@ -2,6 +2,7 @@ package principal;
 
 import java.util.Scanner;
 
+import fachada.ViveroFachadaPrincipal;
 import modelo.Planta;
 import utils.ConexionBD;
 
@@ -9,7 +10,8 @@ public class Principal {
 
 	public static void main(String[] args) {
 		
-
+		ViveroFachadaPrincipal portal = ViveroFachadaPrincipal.getPortal();
+		
 		System.out.println("INI");
 		
 		Scanner in = new Scanner (System.in);
@@ -17,23 +19,9 @@ public class Principal {
 		ConexionBD con = ConexionBD.getCon();
 
 		System.out.println("Programa de gestion de un invernadero");
-
-		int opcion = 0;
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		portal.mostrarMenuLogin();
+			
 		
 		
 		
