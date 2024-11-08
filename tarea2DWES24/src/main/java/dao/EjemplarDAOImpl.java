@@ -21,9 +21,10 @@ public class EjemplarDAOImpl {
 
 	public int insertar(Ejemplar ej) {
 		try {
-			ps = con.prepareStatement("INSERT INTO ejemplares (nombre, fk_planta) VALUES (?,?)");
-			ps.setString(1, ej.getNombre());
-			ps.setString(2, ej.getFk_planta());
+			ps = con.prepareStatement("INSERT INTO ejemplares (id,nombre, fk_planta) VALUES (?,?,?)");
+			ps.setInt(1, ej.getId());
+			ps.setString(2, ej.getNombre());
+			ps.setString(3, ej.getFk_planta());
 			return ps.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Error al insertar en ejemplares " + e.getMessage());
@@ -39,7 +40,7 @@ public class EjemplarDAOImpl {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				listaEjemplar.add(new Ejemplar(rs.getInt(1), rs.getString(2), rs.getString(3)));
+				listaEjemplar.add(new Ejemplar(rs.getString(2), rs.getString(3)));
 			}
 			return listaEjemplar;
 		} catch (SQLException e) {
@@ -74,7 +75,7 @@ public class EjemplarDAOImpl {
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
-				return new Ejemplar(rs.getInt(1), rs.getString(2), rs.getString(3));
+				return new Ejemplar(rs.getString(2), rs.getString(3));
 			}
 			
 		} catch (SQLException e) {
@@ -84,4 +85,19 @@ public class EjemplarDAOImpl {
 		return null;
 	}
 	
+	public int findMaxId() {
+		try {
+			ps = con.prepareStatement("SELECT MAX(id) FROM ejemplares");
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				return rs.getInt(1);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Error al consultar por tipo " + e.getMessage());
+
+		}
+		return (Integer) null;
+	}
 }

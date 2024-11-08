@@ -76,8 +76,11 @@ private static ViveroFachadaGestionMensajes gestMens;
 		System.out.println();
 		System.out.println("Código de ejemplar: ");
 		int id_ej = in.nextInt();
+		System.out.println();
+		System.out.println("Mensaje: ");
+		String mensaje = in.next();
 
-		Controlador.getServicios().getServMensaje().registrarMensaje(id_ej, portal.getCredencial().getId());
+		Controlador.getServicios().getServMensaje().registrarMensaje(id_ej, portal.getCredencial().getFk_persona(), mensaje);
 		
 	}
 	

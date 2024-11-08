@@ -10,9 +10,8 @@ public class Mensaje {
 	private int fk_personasMensajes;
 	private int fk_ejemplaresMensajes;
 
-	public Mensaje(int id, LocalDateTime fechahora, String mensaje, int fk_personasMensajes, int fk_ejemplaresMensajes) {
+	public Mensaje(LocalDateTime fechahora, String mensaje, int fk_personasMensajes, int fk_ejemplaresMensajes) {
 		super();
-		this.id = id;
 		this.fechahora = fechahora;
 		this.mensaje = mensaje;
 		this.fk_personasMensajes = fk_personasMensajes;

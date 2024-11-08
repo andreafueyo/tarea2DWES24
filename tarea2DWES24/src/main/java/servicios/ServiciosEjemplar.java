@@ -37,37 +37,17 @@ public class ServiciosEjemplar {
 		return ejemplarDAOImpl.findById(id);
 	}
 	
-	public void registrarEjemplar(String cod_planta, int id_persona) {
-		Planta planta = Controlador.getServicios().getServPlanta().findByCod(cod_planta);
+	public int findMaxId() {
+		return ejemplarDAOImpl.findMaxId();
+	}
+	
+	public void registrarEjemplar(Planta pl, int id_persona) {
 		
-		//para insertar y que el id sea único, obtengo el numero total de ejemplares y le sumo uno
-		List<Ejemplar> lEjemplares = this.findAll();
+		int new_id = this.findMaxId()+1;
+		Ejemplar ej = new Ejemplar(new_id,pl.getCodigo()+"_"+new_id, pl.getCodigo());
+		this.insertar(ej);	
 		
-		int size;
-		if(lEjemplares == null) {
-			size = 1;
-		}
-		else {
-			size  = lEjemplares.size()+1;
-		}
-		
-		
-		Ejemplar ej = new Ejemplar(size, planta.getCodigo()+"_"+size, planta.getCodigo());
-		
-		this.insertar(ej);
-		
-		List<Mensaje> lMensajes = Controlador.getServicios().getServMensaje().findAll();
-		
-		int size2;
-		if(lMensajes == null) {
-			size2 = 1;
-		}
-		else {
-			size2 = lMensajes.size()+1;
-		}
-		
-		Persona p = Controlador.getServicios().getServPersona().findById(id_persona);
-		Mensaje m = new Mensaje(size2, LocalDateTime.now(), "mensaje de prueba", p.getId(), ej.getId());
+		Mensaje m = new Mensaje(LocalDateTime.now(), "mensaje de prueba", id_persona, ej.getId());
 		
 		Controlador.getServicios().getServMensaje().insertar(m);
 	}
@@ -102,9 +82,13 @@ public class ServiciosEjemplar {
 		System.out.println("Estos son los mensajes para el ejemplar "+id_ej+": ");
 		
 		List<Mensaje> listaMensajes = Controlador.getServicios().getServMensaje().findByEjemplar(id_ej);
-	 	for(Mensaje m : listaMensajes) {
-	 		System.out.println(m.toString());
+	 	if(listaMensajes == null || listaMensajes.isEmpty()) {
+	 		System.out.println("No hay mensajes para este ejemplar");
+	 	}else {
+			for(Mensaje m : listaMensajes) {
+		 		System.out.println(m.toString());
+		 	}
+		 	System.out.println();
 	 	}
-	 	System.out.println();
 	}
 }

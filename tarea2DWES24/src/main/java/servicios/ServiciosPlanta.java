@@ -16,14 +16,14 @@ public class ServiciosPlanta {
 		plantaDAOImpl = con.getPlantaDAOImpl();
 	}
 	
-	public boolean validarPlanta(Planta p) { 
-		//si ya existe planta con ese codigo devuelve false
+	public boolean existePlanta(String cod) { 
+		//si ya existe planta con ese codigo devuelve true
 		
-		if(this.findByCod(p.getCodigo()) == null) {
-			return true;
+		if(this.findByCod(cod) == null) {
+			return false;
 		}
 		else {
-			return false;
+			return true;
 		}
 		
 	}

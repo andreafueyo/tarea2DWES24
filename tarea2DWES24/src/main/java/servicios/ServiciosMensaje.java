@@ -2,6 +2,7 @@ package servicios;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Scanner;
 
 import control.Controlador;
 import dao.EjemplarDAOImpl;
@@ -40,24 +41,8 @@ public class ServiciosMensaje {
 		return mensajeDAOImpl.findAll();
 	}
 		
-	public void registrarMensaje(int id_ej, int id_persona) {
-		
-		Ejemplar ej = Controlador.getServicios().getServEjemplar().findById(id_ej);
-		
-		Controlador.getServicios().getServEjemplar().insertar(ej);
-		
-		List<Mensaje> lMensajes = this.findAll();
-		
-		int size;
-		if(lMensajes == null) {
-			size = 1;
-		}
-		else {
-			size = lMensajes.size()+1;
-		}
-		Persona p = Controlador.getServicios().getServPersona().findById(id_persona);
-		
-		Mensaje m = new Mensaje(size, LocalDateTime.now(), "mensaje de prueba", p.getId(), ej.getId());
+	public void registrarMensaje(int id_ej, int id_persona, String mensaje) {
+		Mensaje m = new Mensaje(LocalDateTime.now(), mensaje, id_persona, id_ej);
 		this.insertar(m);
 	}
 }

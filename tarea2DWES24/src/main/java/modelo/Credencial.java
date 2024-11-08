@@ -7,9 +7,8 @@ public class Credencial {
 	private String password;
 	private int fk_persona;
 	
-	public Credencial(int id, String usuario, String password, int fk_persona) {
+	public Credencial(String usuario, String password, int fk_persona) {
 		super();
-		this.id = id;
 		this.usuario = usuario;
 		this.password = password;
 		this.fk_persona = fk_persona;

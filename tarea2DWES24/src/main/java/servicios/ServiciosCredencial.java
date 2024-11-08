@@ -29,12 +29,15 @@ public class ServiciosCredencial {
 	}	
 	
 	public boolean validarCredencialContraseña(Credencial c) { //Si coincide, devuelve true
-		if(this.findByUsuario(c.getUsuario()).getPassword().equals(c.getPassword())) {
-			return true;
-		}
-		else {
+		if(this.findByUsuario(c.getUsuario()) == null) {
 			return false;
 		}
+		else if(this.findByUsuario(c.getUsuario()).getPassword().equals(c.getPassword())){
+			return true;
+		}else {
+			return false;
+		}
+		
 		
 	}
 	
@@ -63,9 +66,9 @@ public class ServiciosCredencial {
 
 	public void registrarCredencial(String usuario, String password, String email) {
 				
-		List<Credencial> listaCredenciales = this.findAll();
 		int id_persona = Controlador.getServicios().getServPersona().findByEmail(email).getId();
-		Credencial c = new Credencial(listaCredenciales.size()+1,usuario, password, id_persona);
+		System.out.println(id_persona);
+		Credencial c = new Credencial(usuario, password, id_persona);
 		
 		this.insertar(c);
 	}	

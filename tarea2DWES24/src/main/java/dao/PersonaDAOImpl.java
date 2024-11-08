@@ -36,7 +36,7 @@ public class PersonaDAOImpl {
 			ps.setString(1, email);
 			rs = ps.executeQuery();
 			if (rs.next())
-				return new Persona(rs.getInt(1), rs.getString(2), rs.getString(3));
+				return new Persona(rs.getInt(1),rs.getString(2), rs.getString(3));
 
 		} catch (SQLException e) {
 			System.out.println("Error al consultar por email " + e.getMessage());
@@ -51,10 +51,10 @@ public class PersonaDAOImpl {
 			ps.setInt(1, id);
 			rs = ps.executeQuery();
 			if (rs.next())
-				return new Persona(rs.getInt(1), rs.getString(2), rs.getString(3));
+				return new Persona(rs.getString(2), rs.getString(3));
 
 		} catch (SQLException e) {
-			System.out.println("Error al consultar por email " + e.getMessage());
+			System.out.println("Error al consultar por id " + e.getMessage());
 
 		}
 		return null;
@@ -67,7 +67,7 @@ public class PersonaDAOImpl {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				listaPersonas.add(new Persona(rs.getInt(1), rs.getString(2), rs.getString(3)));
+				listaPersonas.add(new Persona(rs.getString(2), rs.getString(3)));
 			}
 			return listaPersonas;
 		} catch (SQLException e) {

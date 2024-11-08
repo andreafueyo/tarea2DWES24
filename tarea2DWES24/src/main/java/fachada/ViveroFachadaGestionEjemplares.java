@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import control.Controlador;
 import control.ViveroServiciosConexion;
+import modelo.Planta;
 import servicios.ServiciosCredencial;
 import servicios.ServiciosEjemplar;
 import servicios.ServiciosMensaje;
@@ -83,8 +84,14 @@ private static ViveroFachadaGestionEjemplares gestEjemp;
 		System.out.println("Código de planta: ");
 		in.nextLine();
 		String cod_planta = in.nextLine();
-
-		Controlador.getServicios().getServEjemplar().registrarEjemplar(cod_planta, portal.getCredencial().getId());
+		
+		while(!Controlador.getServicios().getServPlanta().existePlanta(cod_planta)) {
+			System.out.println("Código de planta incorrecto, vuelva a intentarlo: ");
+			in.nextLine();
+			cod_planta = in.nextLine();
+		}
+		Planta p = Controlador.getServicios().getServPlanta().findByCod(cod_planta);
+		Controlador.getServicios().getServEjemplar().registrarEjemplar(p, portal.getCredencial().getFk_persona());
 				
 	}
 	

@@ -6,6 +6,13 @@ public class Ejemplar {
 	private String nombre;
 	private String fk_planta;
 	
+	
+	public Ejemplar(String nombre, String fk_planta) {
+		super();
+		this.nombre = nombre;
+		this.fk_planta = fk_planta;
+	}
+	
 	public Ejemplar(int id, String nombre, String fk_planta) {
 		super();
 		this.id = id;

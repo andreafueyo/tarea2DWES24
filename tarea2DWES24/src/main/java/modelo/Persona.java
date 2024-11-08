@@ -2,6 +2,16 @@ package modelo;
 
 public class Persona {
 
+	private int id;
+	private String nombre;
+	private String email;
+	
+	public Persona(String nombre, String email) {
+		super();
+		this.nombre = nombre;
+		this.email = email;
+	}
+	
 	public Persona(int id, String nombre, String email) {
 		super();
 		this.id = id;
@@ -9,11 +19,6 @@ public class Persona {
 		this.email = email;
 	}
 
-	private int id;
-	private String nombre;
-	private String email;
-	
-	
 	public int getId() {
 		return id;
 	}

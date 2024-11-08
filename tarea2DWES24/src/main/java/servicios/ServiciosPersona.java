@@ -46,7 +46,7 @@ public class ServiciosPersona {
 	public void registrarPersona(String nombre, String email) {
 				
 		List<Persona> listaPersonas = this.findAll();
-		Persona p = new Persona(listaPersonas.size()+1,nombre,email);
+		Persona p = new Persona(nombre,email);
 		
 		this.insertar(p);
 	}

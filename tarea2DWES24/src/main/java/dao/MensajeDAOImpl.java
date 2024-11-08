@@ -51,7 +51,7 @@ public class MensajeDAOImpl {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				listaMensajes.add(new Mensaje(rs.getInt(1), rs.getTimestamp(2).toLocalDateTime(), rs.getString(3), rs.getInt(4), rs.getInt(5)));
+				listaMensajes.add(new Mensaje(rs.getTimestamp(2).toLocalDateTime(), rs.getString(3), rs.getInt(4), rs.getInt(5)));
 			}
 			return listaMensajes;
 		} catch (SQLException e) {
@@ -64,14 +64,13 @@ public class MensajeDAOImpl {
 	public List<Mensaje> findByEjemplar(int idEjemplar) { 
 		List<Mensaje> listaMensajes = new ArrayList<Mensaje>();
 		try {
-			ps = con.prepareStatement("SELECT * FROM mensajes INNER JOIN plantas ON mensajes.fk_ejemplaresMensajes = plantas.codigo WHERE plantas.codigo=?"); 
+			ps = con.prepareStatement("SELECT * FROM mensajes INNER JOIN ejemplares ON mensajes.fk_ejemplaresMensajes = ejemplares.id WHERE ejemplares.id=?"); 
 			ps.setInt(1, idEjemplar);
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				listaMensajes.add(new Mensaje(rs.getInt(1), rs.getTimestamp(2).toLocalDateTime(), rs.getString(3), rs.getInt(4), rs.getInt(5)));
+				listaMensajes.add(new Mensaje(rs.getTimestamp(2).toLocalDateTime(), rs.getString(3), rs.getInt(4), rs.getInt(5)));
 			}
-			System.out.println(listaMensajes);
 			return listaMensajes;
 		} catch (SQLException e) {
 			System.out.println("Error al consultar por ejemplar " + e.getMessage());
@@ -86,7 +85,7 @@ public class MensajeDAOImpl {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				listaMensajes.add(new Mensaje(rs.getInt(1), rs.getTimestamp(2).toLocalDateTime(), rs.getString(3), rs.getInt(4), rs.getInt(5)));
+				listaMensajes.add(new Mensaje(rs.getTimestamp(2).toLocalDateTime(), rs.getString(3), rs.getInt(4), rs.getInt(5)));
 			}
 			return listaMensajes;
 		} catch (SQLException e) {

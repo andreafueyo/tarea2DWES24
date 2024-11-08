@@ -76,6 +76,11 @@ public class ViveroFachadaGestionPlantas {
 		System.out.println();
 		System.out.println("Código: ");
 		String codigo = in.next();
+		while(Controlador.getServicios().getServPlanta().existePlanta(codigo)) {
+			System.out.println("Código de planta ya existente, vuelva a intentarlo: ");
+			in.nextLine();
+			codigo = in.nextLine();
+		}
 		System.out.println("Nombre común: ");
 		String nom_com = in.next();
 		System.out.println("Nombre científico: ");

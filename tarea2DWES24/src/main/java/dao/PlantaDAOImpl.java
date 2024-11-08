@@ -21,7 +21,7 @@ public class PlantaDAOImpl {
 
 	public int insertar(Planta p) {
 		try {
-			ps = con.prepareStatement("insert into plantas (codigo, nombreComun, nombreCientifico) values (?,?)");
+			ps = con.prepareStatement("insert into plantas (codigo, nombreComun, nombreCientifico) values (?,?,?)");
 			ps.setString(1, p.getCodigo());
 			ps.setString(2, p.getNombre_comun());
 			ps.setString(3, p.getNombre_cientifico());
@@ -34,10 +34,11 @@ public class PlantaDAOImpl {
 
 	public int modificar(Planta p) {
 		try {
-			ps = con.prepareStatement("update plantas set 'codigo'='?','nombreComun'='?','nombreCientifico'='?' WHERE 1");
-			ps.setString(1, p.getCodigo());
-			ps.setString(2, p.getNombre_comun());
-			ps.setString(3, p.getNombre_cientifico());
+			ps = con.prepareStatement("update plantas set nombreComun=?,nombreCientifico=? WHERE codigo=?");
+
+			ps.setString(1, p.getNombre_comun());
+			ps.setString(2, p.getNombre_cientifico());
+			ps.setString(3, p.getCodigo());
 			return ps.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Error al modificar en plantas " + e.getMessage());

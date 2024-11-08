@@ -20,6 +20,7 @@ public class ViveroFachadaPrincipal {
 	private static ViveroFachadaAdmin admin = ViveroFachadaAdmin.getPortal();
 	
 	private Credencial credencial;
+
 	Scanner in = new Scanner(System.in);
 	
 	ViveroServiciosConexion conServicios = ViveroServiciosConexion.getServicios();
@@ -91,6 +92,7 @@ public class ViveroFachadaPrincipal {
 				} else {
 					loginCorrecto = true;
 					credencial = Controlador.getServicios().getServCredencial().findByUsuario(c.getUsuario());
+					System.out.println("outprint login"+credencial);
 				}
 			
 			}
@@ -133,6 +135,10 @@ public class ViveroFachadaPrincipal {
 	
 	public Credencial getCredencial() {
 		return credencial;
+	}
+	
+	public void setCredencial(Credencial credencial) {
+		this.credencial = credencial;
 	}
 	
 }

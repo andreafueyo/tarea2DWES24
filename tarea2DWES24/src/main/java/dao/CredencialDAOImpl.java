@@ -37,7 +37,7 @@ public class CredencialDAOImpl {
 			ps.setString(1, usuario);
 			rs = ps.executeQuery();
 			if (rs.next())
-				return new Credencial(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+				return new Credencial(rs.getString(2), rs.getString(3), rs.getInt(4));
 
 		} catch (SQLException e) {
 			System.out.println("error al consultar por usuario " + e.getMessage());
@@ -53,7 +53,7 @@ public class CredencialDAOImpl {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				listaCredenciales.add(new Credencial(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4)));
+				listaCredenciales.add(new Credencial(rs.getString(2), rs.getString(3), rs.getInt(4)));
 			}
 			return listaCredenciales;
 		} catch (SQLException e) {
