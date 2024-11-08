@@ -6,7 +6,7 @@ public class Credencial {
 	private String usuario;
 	private String password;
 	private int fk_persona;
-
+	
 	public Credencial(int id, String usuario, String password, int fk_persona) {
 		super();
 		this.id = id;
@@ -15,11 +15,13 @@ public class Credencial {
 		this.fk_persona = fk_persona;
 	}
 	
+	
 	public Credencial(String usuario, String password) {
 		this.usuario = usuario;
 		this.password = password;
 	}
 
+	
 	public int getId() {
 		return id;
 	}
@@ -52,6 +54,7 @@ public class Credencial {
 		this.fk_persona = fk_persona;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "Credencial [id=" + id + ", usuario=" + usuario + ", password=" + password + ", fk_persona=" + fk_persona

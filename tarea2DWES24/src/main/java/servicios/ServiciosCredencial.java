@@ -1,5 +1,8 @@
 package servicios;
 
+import java.util.List;
+
+import control.Controlador;
 import dao.CredencialDAOImpl;
 import modelo.Credencial;
 import utils.ConexionBD;
@@ -26,8 +29,7 @@ public class ServiciosCredencial {
 	}	
 	
 	public boolean validarCredencialContraseña(Credencial c) { //Si coincide, devuelve true
-		
-		if(this.findByUsuario(c.getUsuario()).getPassword() == c.getPassword()) {
+		if(this.findByUsuario(c.getUsuario()).getPassword().equals(c.getPassword())) {
 			return true;
 		}
 		else {
@@ -55,5 +57,17 @@ public class ServiciosCredencial {
 		return credencialDAOImpl.findByUsuario(usuario);
 	}
 
+	public List<Credencial> findAll(){
+		return credencialDAOImpl.findAll();
+	}
 
+	public void registrarCredencial(String usuario, String password, String email) {
+				
+		List<Credencial> listaCredenciales = this.findAll();
+		int id_persona = Controlador.getServicios().getServPersona().findByEmail(email).getId();
+		Credencial c = new Credencial(listaCredenciales.size()+1,usuario, password, id_persona);
+		
+		this.insertar(c);
+	}	
+	
 }

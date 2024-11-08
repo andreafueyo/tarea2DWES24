@@ -12,27 +12,36 @@ public class Ejemplar {
 		this.nombre = nombre;
 		this.fk_planta = fk_planta;
 	}
-	@Override
-	public String toString() {
-		return "Ejemplar [id=" + id + ", nombre=" + nombre + ", fk_planta=" + fk_planta + "]";
-	}
+	
+	
 	public int getId() {
 		return id;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
+	
 	public String getNombre() {
 		return nombre;
 	}
+	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
 	public String getFk_planta() {
 		return fk_planta;
 	}
+	
 	public void setFk_planta(String fk_planta) {
 		this.fk_planta = fk_planta;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Ejemplar [id=" + id + ", nombre=" + nombre + ", fk_planta=" + fk_planta + "]";
 	}
 
 }

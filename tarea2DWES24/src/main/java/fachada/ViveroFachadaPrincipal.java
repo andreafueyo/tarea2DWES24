@@ -1,12 +1,8 @@
 package fachada;
 
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.IconifyAction;
-
-import com.google.protobuf.Internal.ListAdapter;
-
 import control.Controlador;
 import control.ViveroServiciosConexion;
 import modelo.Credencial;
@@ -20,10 +16,11 @@ import servicios.ServiciosPlanta;
 public class ViveroFachadaPrincipal {
 	
 	private static ViveroFachadaPrincipal portal;
-	private static ViveroFachadaInvitado invitado = ViveroFachadaInvitado.getPortal();
 	private static ViveroFachadaPersonal personal = ViveroFachadaPersonal.getPortal();
+	private static ViveroFachadaAdmin admin = ViveroFachadaAdmin.getPortal();
 	
-	private String nombreUsuario;
+	private Credencial credencial;
+	Scanner in = new Scanner(System.in);
 	
 	ViveroServiciosConexion conServicios = ViveroServiciosConexion.getServicios();
 
@@ -41,20 +38,48 @@ public class ViveroFachadaPrincipal {
 				portal = new ViveroFachadaPrincipal();
 		return portal;
 	}
+	
+	public void mostrarMenuPrincipal() {
+		
+		System.out.println("¡Bienvenido! ¿Qué desea hacer?");
+		System.out.println();
+		
+        int opcion = 0;
+        do {
+    		System.out.println("Seleccione una opción:");
+    		System.out.println("1.  Ver plantas.");
+    		System.out.println("2.  Login.");
+    		
+    		try {
+	            opcion = in.nextInt();
+	            if (opcion < 1 || opcion > 2) {
+	                System.out.println("Opción incorrecta. Inserte uno de los números indicados.");
+	                continue;
+            }
+            switch (opcion) {
+            	case 1:
+            		portal.mostarPlantas();
+            		break;
+            	case 2:
+            		portal.mostrarMenuLogin();
+            		break;
+            }
+    		} catch (InputMismatchException e) {
+				System.out.println("ERROR. Ingrese un número entero.");
+				in.nextLine();
+	        }
+        } while(opcion != 2);
+	}
 		
 	public void mostrarMenuLogin() {
 		
 		Credencial c = this.pedirCredenciales();
-				
-		String tipoUsuario = Controlador.getServicios().getServCredencial().validarTipoUsuario(c);
-		System.out.println(tipoUsuario);
-		switch (tipoUsuario) {
-		case "invitado":
-			ViveroFachadaPrincipal.invitado.mostrarMenuInvitado();
-			break;
-		case "admin":
-			//this.mostrarMenuAdmin();
-		default:
+		
+		if(c.getUsuario().equals("admin") && c.getPassword().equals("admin")) {
+			System.out.println("¡Hola, admin!, ¿qué desea hacer?");
+			ViveroFachadaPrincipal.admin.mostrarMenuAdmin();	
+		}
+		else {
 			boolean loginCorrecto = false;
 			while(!loginCorrecto) {
 				if(!Controlador.getServicios().getServCredencial().validarCredencialContraseña(c)) {
@@ -63,21 +88,19 @@ public class ViveroFachadaPrincipal {
 					c = this.pedirCredenciales();
 				} else {
 					loginCorrecto = true;
-					nombreUsuario = c.getUsuario();
+					credencial = Controlador.getServicios().getServCredencial().findByUsuario(c.getUsuario());
 				}
 			
 			}
-			System.out.println("¡Hola, "+c.getUsuario()+"! que desea hacer?");
-			ViveroFachadaPrincipal.personal.mostrarMenuPersonal();
-			break;
+			System.out.println("¡Hola, "+c.getUsuario()+"!, ¿Qué desea hacer?");
+			ViveroFachadaPrincipal.personal.mostrarMenuPersonal();		
 		}
 	}
 		
 	
 	public Credencial pedirCredenciales() {
-		Scanner in = new Scanner(System.in);
 		
-		System.out.println("Introduzca las credenciales de acceso. Si eres un invitado, introduzca 'invitado' en usuario y contraseña.");
+		System.out.println("Introduzca las credenciales de acceso.");
 		System.out.println();
 		System.out.println("Usuario: ");
 		String usuario = in.next();
@@ -90,24 +113,24 @@ public class ViveroFachadaPrincipal {
 	}
 	
 	
-	//Métodos comunes a todas las fachadas
+	//MÉTODOS COMUNES A TODAS LAS FACHADAS
 	
 	
 	public void mostarPlantas() {
 		System.out.println();
 		System.out.println("Estas son las plantas: ");
-	 	List<Planta> lPlantas = Controlador.getServicios().getServPlanta().findAll();
+	 	List<Planta> listaPlantas = Controlador.getServicios().getServPlanta().findAll();
 		
 		int contador = 1;
-	 	for(Planta p : lPlantas) {
+	 	for(Planta p : listaPlantas) {
 	 		System.out.println(contador + ": " + p.toString());
 	 		contador++;
 	 	}
 	 	System.out.println();
 	}
 	
-	public String getNombreUsuario() {
-		return nombreUsuario;
+	public Credencial getCredencial() {
+		return credencial;
 	}
 	
 }

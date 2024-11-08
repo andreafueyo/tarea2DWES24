@@ -47,14 +47,14 @@ public class PlantaDAOImpl {
 
 	public Planta findByCod(String cod) {
 		try {
-			ps = con.prepareStatement("select * from plantas where codigo=?");
+			ps = con.prepareStatement("SELECT * FROM plantas WHERE codigo=?");
 			ps.setString(1, cod);
 			rs = ps.executeQuery();
 			if (rs.next())
 				return new Planta(rs.getString(1), rs.getString(2), rs.getString(3));
 
 		} catch (SQLException e) {
-			System.out.println("error al consultar por codigo " + e.getMessage());
+			System.out.println("Error al consultar por código " + e.getMessage());
 
 		}
 		return null;
@@ -62,7 +62,7 @@ public class PlantaDAOImpl {
 	public List<Planta> findAll() {
 		List<Planta> lPlantas = new ArrayList<Planta>();
 		try {
-			ps = con.prepareStatement("select * from plantas order by codigo");
+			ps = con.prepareStatement("SELECT * FROM plantas ORDER BY codigo");
 			rs = ps.executeQuery();
 			
 			while (rs.next()) {
@@ -71,7 +71,7 @@ public class PlantaDAOImpl {
 			return lPlantas;
 
 		} catch (SQLException e) {
-			System.out.println("error al obtener todas las plantas " + e.getMessage());
+			System.out.println("Error al obtener todas las plantas " + e.getMessage());
 
 		}
 		return null;

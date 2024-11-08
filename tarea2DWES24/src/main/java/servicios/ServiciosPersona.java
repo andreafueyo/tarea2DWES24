@@ -1,5 +1,7 @@
 package servicios;
 
+import java.util.List;
+
 import dao.PersonaDAOImpl;
 import modelo.Persona;
 import utils.ConexionBD;
@@ -31,6 +33,22 @@ public class ServiciosPersona {
 
 	public Persona findByEmail(String email) {
 		return personaDAOImpl.findByEmail(email);
+	}
+	
+	public Persona findById(int id) {
+		return personaDAOImpl.findById(id);
+	}
+
+	public List<Persona> findAll() {
+		return personaDAOImpl.findAll();
+	}
+
+	public void registrarPersona(String nombre, String email) {
+				
+		List<Persona> listaPersonas = this.findAll();
+		Persona p = new Persona(listaPersonas.size()+1,nombre,email);
+		
+		this.insertar(p);
 	}
 
 }

@@ -21,7 +21,7 @@ public class EjemplarDAOImpl {
 
 	public int insertar(Ejemplar ej) {
 		try {
-			ps = con.prepareStatement("insert into ejemplares (id, nombre, fk_planta) values (?,?)");
+			ps = con.prepareStatement("INSERT INTO ejemplares (id, nombre, fk_planta) VALUES (?,?,?)");
 			ps.setInt(1,ej.getId());
 			ps.setString(2, ej.getNombre());
 			ps.setString(3, ej.getFk_planta());
@@ -33,18 +33,53 @@ public class EjemplarDAOImpl {
 	}
 
 	public List<Ejemplar> findByTipo(String tipos) {
-		List<Ejemplar> lEjemplar = new ArrayList<Ejemplar>();
+		List<Ejemplar> listaEjemplar = new ArrayList<Ejemplar>();
 		try {
-			ps = con.prepareStatement("select * from ejemplares INNER JOIN plantas ON ejemplares.fk_planta = plantas.codigo WHERE plantas.codigo IN (?)");
+			ps = con.prepareStatement("SELECT * FROM ejemplares INNER JOIN plantas ON ejemplares.fk_planta = plantas.codigo WHERE plantas.codigo IN (?)");
 			ps.setString(1, tipos);
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				lEjemplar.add(new Ejemplar(rs.getInt(1), rs.getString(2), rs.getString(3)));
+				listaEjemplar.add(new Ejemplar(rs.getInt(1), rs.getString(2), rs.getString(3)));
 			}
-			return lEjemplar;
+			return listaEjemplar;
 		} catch (SQLException e) {
-			System.out.println("error al consultar por tipo " + e.getMessage());
+			System.out.println("Error al consultar por tipo " + e.getMessage());
+
+		}
+		return null;
+	}
+	
+	
+	public List<Ejemplar> findAll() {
+		List<Ejemplar> listaEjemplar = new ArrayList<Ejemplar>();
+		try {
+			ps = con.prepareStatement("SELECT * FROM ejemplares");
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				listaEjemplar.add(new Ejemplar(rs.getInt(1), rs.getString(2), rs.getString(3)));
+			}
+			return listaEjemplar;
+		} catch (SQLException e) {
+			System.out.println("Error al consultar por tipo " + e.getMessage());
+
+		}
+		return null;
+	}
+	
+	
+	public Ejemplar findById(int id) {
+		try {
+			ps = con.prepareStatement("SELECT * FROM ejemplares");
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				return new Ejemplar(rs.getInt(1), rs.getString(2), rs.getString(3));
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("Error al consultar por tipo " + e.getMessage());
 
 		}
 		return null;

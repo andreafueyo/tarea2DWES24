@@ -1,15 +1,10 @@
 package fachada;
 
-import java.util.List;
+import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import com.google.protobuf.Internal.ListAdapter;
 
 import control.Controlador;
 import control.ViveroServiciosConexion;
-import modelo.Credencial;
-import modelo.Ejemplar;
-import modelo.Planta;
 import servicios.ServiciosCredencial;
 import servicios.ServiciosEjemplar;
 import servicios.ServiciosMensaje;
@@ -18,7 +13,7 @@ import servicios.ServiciosPlanta;
 
 public class ViveroFachadaGestionEjemplares {
 	
-	private static ViveroFachadaGestionEjemplares personal;
+private static ViveroFachadaGestionEjemplares gestEjemp;
 	
 	private static ViveroFachadaPrincipal portal = ViveroFachadaPrincipal.getPortal();
 	
@@ -31,65 +26,107 @@ public class ViveroFachadaGestionEjemplares {
 	ServiciosPersona perServ = conServicios.getServiciosPersona();
 	ServiciosPlanta plServ = conServicios.getServiciosPlanta();
 	
-	
+	Scanner in = new Scanner(System.in);
 	
 	public static ViveroFachadaGestionEjemplares getPortal() {
-		if (personal==null)
-				personal = new ViveroFachadaGestionEjemplares();
-		return personal;
+		if (gestEjemp==null)
+			gestEjemp = new ViveroFachadaGestionEjemplares();
+		return gestEjemp;
 	}
 	
 	public void mostrarMenuGestionEjemplares() {
-		Scanner in = new Scanner(System.in);
-		System.out.println();
 		
         int opcion = 0;
         do {
-    		System.out.println("Seleccione una opcion:");
+    		System.out.println("Seleccione una opción:");
     		System.out.println("1.  Registrar un nuevo ejemplar.");
     		System.out.println("2.  Filtrar ejemplares por tipo de planta.");
     		System.out.println("3.  Ver mensajes de seguimiento de un ejemplar.");
-    		System.out.println("4.  Volver al menú principal.");
-            opcion = in.nextInt();
-            if (opcion < 1 || opcion > 4) {
-                System.out.println("Opcion incorrecta.");
-                continue;
-            }
+    		System.out.println("4.  Cerrar sesión.");
+    		
+    		try {
+    			opcion = in.nextInt();
+    			if (opcion < 1 || opcion > 4) {
+    				System.out.println("Opcion incorrecta.");
+    				continue;
+    			}
+            
             switch (opcion) {
             	case 1:
             		this.registrarEjemplar();
             		break;
             	case 2:
-            		
+            		this.filtrarEjemplares();
             		break;
             	case 3:
-            		
+            		this.verMensajes();
             		break;
             	case 4:
             		break;
             }
+    		  } catch (InputMismatchException e) {
+    				System.out.println("ERROR. Ingrese un número entero.");
+    				in.nextLine();
+    	        }
         } while(opcion != 4);
 	}
 	
+	
+	
 	public void registrarEjemplar() {
-		Scanner in = new Scanner(System.in);
 		
 		System.out.println("A continuación se muestran todas las plantas disponibles. Introduce el código de la planta sobre la que quieres crear un ejemplar nuevo.");
 		System.out.println();
 		portal.mostarPlantas();
 		System.out.println();
 		System.out.println("Código de planta: ");
-		String cod_planta = in.next();
+		in.nextLine();
+		String cod_planta = in.nextLine();
 
-		Planta planta = Controlador.getServicios().getServPlanta().findByCod(cod_planta);
+		Controlador.getServicios().getServEjemplar().registrarEjemplar(cod_planta, portal.getCredencial().getId());
+				
+	}
+	
+	public void filtrarEjemplares() {
+
+//		System.out.println("A continuación se muestran todas las plantas disponibles. Introduce los códigos de plantas sobre los que quieres buscar ejemplares. Para finalizar, introduzca 'fin'.");
+//		System.out.println();
+//		portal.mostarPlantas();
+//		System.out.println();
+//		String cod_planta = ""; //auxiliar para comprobar cada cadena introducida
+//		String codigos = "";	//cadena en la que se acumulan
+//        boolean primeraCadena = true;
+//		
+//		while(!cod_planta.equals("fin")) {
+//			System.out.println("Código de planta: ");
+//			cod_planta = in.next();
+//			
+//            if (!primeraCadena) {
+//                codigos += (",");
+//            } else {
+//                primeraCadena = false; // cambiar la bandera después de la primera cadena
+//            }
+//            
+//            if(!cod_planta.equals("fin")) {
+//                codigos += cod_planta;
+//            }
+//		}
 		
-		List<Ejemplar> lEjemplares = Controlador.getServicios().getServEjemplar().findByTipo(planta.getCodigo());
+//		Controlador.getServicios().getServEjemplar().filtrarEjemplares(codigos);
 		
-		Ejemplar ej = new Ejemplar(lEjemplares.size()+1, planta.getCodigo()+"_"+lEjemplares.size()+1, planta.getCodigo());
-		
-		Controlador.getServicios().getServEjemplar().insertar(ej);
-		
-		
+	}
+	
+	public void verMensajes() {
+	
+		System.out.println("A continuación se muestran todos los ejemplares. Introduce el código del ejemplar para el que mostrar sus mensajes.");
+		System.out.println();
+		Controlador.getServicios().getServEjemplar().mostrarEjemplares();
+		System.out.println();
+		System.out.println("Código de ejemplar: ");
+		int id_ej = in.nextInt();
+
+		Controlador.getServicios().getServEjemplar().verMensajes(id_ej);
+				
 	}
 	
 }
