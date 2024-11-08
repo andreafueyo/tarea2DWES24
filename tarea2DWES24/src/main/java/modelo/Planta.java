@@ -41,8 +41,12 @@ public class Planta {
 	
 	@Override
 	public String toString() {
-		return "Planta [codigo=" + codigo + ", nombre_comun=" + nombre_comun + ", nombre_cientifico="
-				+ nombre_cientifico + "]";
+		String ret ="";
+		ret ="PLANTA";
+		ret += "\tCódigo: " + this.codigo;
+		ret += "\tNombre común: " + this.nombre_comun;
+		ret += "\tNombre científico: " + this.nombre_cientifico;
+		return ret;
 	}
 	
 	

@@ -21,12 +21,11 @@ public class MensajeDAOImpl {
 
 	public int insertar(Mensaje m) {
 		try {
-			ps = con.prepareStatement("INSERT INTO mensajes (id,fechahora,mensaje,fk_personasMensajes,fk_ejemplaresMensajes) VALUES (?,?,?,?,?)");
-			ps.setInt(1,m.getId());
-			ps.setTimestamp(2, Timestamp.valueOf(m.getFechahora()));
-			ps.setString(3, m.getMensaje());
-			ps.setInt(4, m.getFk_personasMensajes());
-			ps.setInt(5,m.getFk_ejemplaresMensajes());			
+			ps = con.prepareStatement("INSERT INTO mensajes (fechahora,mensaje,fk_personasMensajes,fk_ejemplaresMensajes) VALUES (?,?,?,?)");
+			ps.setTimestamp(1, Timestamp.valueOf(m.getFechahora()));
+			ps.setString(2, m.getMensaje());
+			ps.setInt(3, m.getFk_personasMensajes());
+			ps.setInt(4, m.getFk_ejemplaresMensajes());			
 			return ps.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Error al insertar en mensajes " + e.getMessage());

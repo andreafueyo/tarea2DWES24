@@ -57,8 +57,13 @@ public class Credencial {
 	
 	@Override
 	public String toString() {
-		return "Credencial [id=" + id + ", usuario=" + usuario + ", password=" + password + ", fk_persona=" + fk_persona
-				+ "]";
+		String ret ="";
+		ret ="CREDENCIAL";
+		ret += "\tID: " + this.id;
+		ret += "\tUsuario: " + this.usuario;
+		ret += "\tPassword: " + this.password;
+		ret += "\tfk_persona: " + this.fk_persona;
+		return ret;
 	}
 	
 	

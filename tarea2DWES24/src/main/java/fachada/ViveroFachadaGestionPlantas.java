@@ -41,7 +41,7 @@ public class ViveroFachadaGestionPlantas {
 		
         int opcion = 0;
         do {
-        	System.out.println("--MENÚ DE PLANTAS--");
+        	System.out.println("---MENÚ DE PLANTAS---");
     		System.out.println("Seleccione una opcion:");
     		System.out.println("1.  Registrar una nueva planta.");
     		System.out.println("2.  Modificar una planta existente.");

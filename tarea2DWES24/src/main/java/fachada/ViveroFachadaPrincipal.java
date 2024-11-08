@@ -41,8 +41,9 @@ public class ViveroFachadaPrincipal {
 	
 	public void mostrarMenuPrincipal() {
 		
-		System.out.println("¡Bienvenido! ¿Qué desea hacer?");
 		System.out.println();
+		System.out.println("--------------------------------------------------");
+		System.out.println("¡Bienvenido/a a nuestro vivero! ¿Qué desea hacer?");
 		
         int opcion = 0;
         do {
@@ -71,6 +72,7 @@ public class ViveroFachadaPrincipal {
         } while(opcion != 2);
 	}
 		
+	
 	public void mostrarMenuLogin() {
 		
 		Credencial c = this.pedirCredenciales();
@@ -83,7 +85,7 @@ public class ViveroFachadaPrincipal {
 			boolean loginCorrecto = false;
 			while(!loginCorrecto) {
 				if(!Controlador.getServicios().getServCredencial().validarCredencialContraseña(c)) {
-					System.out.println("Usuario incorrecto, vuelva a introducir usuario y contraseña.");
+					System.out.println("Usuario o contraseña incorrectos, vuelva a introducir los datos.");
 					System.out.println();
 					c = this.pedirCredenciales();
 				} else {
@@ -92,6 +94,7 @@ public class ViveroFachadaPrincipal {
 				}
 			
 			}
+			//USUARIO: andrea CONTRASEÑA: andrea
 			System.out.println("¡Hola, "+c.getUsuario()+"!, ¿Qué desea hacer?");
 			ViveroFachadaPrincipal.personal.mostrarMenuPersonal();		
 		}
@@ -114,7 +117,6 @@ public class ViveroFachadaPrincipal {
 	
 	
 	//MÉTODOS COMUNES A TODAS LAS FACHADAS
-	
 	
 	public void mostarPlantas() {
 		System.out.println();

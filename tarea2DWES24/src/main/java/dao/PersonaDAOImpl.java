@@ -19,10 +19,9 @@ public class PersonaDAOImpl {
 
 	public int insertar(Persona p) {
 		try {
-			ps = con.prepareStatement("INSERT INTO personas (id,nombre,email) VALUES (?,?,?)");
-			ps.setInt(1, p.getId());
-			ps.setString(2, p.getNombre());
-			ps.setString(3, p.getEmail());
+			ps = con.prepareStatement("INSERT INTO personas (nombre,email) VALUES (?,?)");
+			ps.setString(1, p.getNombre());
+			ps.setString(2, p.getEmail());
 			return ps.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Error al insertar en personas " + e.getMessage());

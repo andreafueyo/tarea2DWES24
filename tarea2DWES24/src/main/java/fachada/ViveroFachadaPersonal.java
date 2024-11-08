@@ -42,7 +42,8 @@ public class ViveroFachadaPersonal {
 			
 	        int opcion = 0;
 	        do {
-	    		System.out.println("Seleccione una opcion:");
+	        	System.out.println("---MENÚ DE USUARIO---");
+	    		System.out.println("Seleccione una opción:");
 	    		System.out.println("1.  Ver plantas.");
 	    		System.out.println("2.  Gestión de ejemplares.");
 	    		System.out.println("3.  Gestión de mensajes.");
@@ -51,7 +52,7 @@ public class ViveroFachadaPersonal {
 	    		try {
 	    		opcion = in.nextInt();
 	            if (opcion < 1 || opcion > 4) {
-	                System.out.println("Opcion incorrecta.");
+	                System.out.println("Opción incorrecta.");
 	                continue;
 	            }
 	            switch (opcion) {

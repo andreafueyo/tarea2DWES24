@@ -38,6 +38,7 @@ private static ViveroFachadaGestionEjemplares gestEjemp;
 		
         int opcion = 0;
         do {
+        	System.out.println("---MENÚ DE GESTIÓN DE EJEMPLARES---");
     		System.out.println("Seleccione una opción:");
     		System.out.println("1.  Registrar un nuevo ejemplar.");
     		System.out.println("2.  Filtrar ejemplares por tipo de planta.");

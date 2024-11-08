@@ -63,8 +63,14 @@ public class Mensaje {
 	
 	@Override
 	public String toString() {
-		return "Mensaje [id=" + id + ", fechahora=" + fechahora + ", mensaje=" + mensaje + ", fk_personasMensajes="
-				+ fk_personasMensajes + ", fk_ejemplaresMensajes=" + fk_ejemplaresMensajes + "]";
+		String ret ="";
+		ret ="MENSAJE";
+		ret += "\tID: " + this.id;
+		ret += "\tFecha y hora: " + this.fechahora;
+		ret += "\tMensaje: " + this.mensaje;
+		ret += "\tfk_personasMensajes: " + this.fk_personasMensajes;
+		ret += "\tfk_ejemplaresMensajes: " + this.fk_ejemplaresMensajes;
+		return ret;
 	}
 
 	

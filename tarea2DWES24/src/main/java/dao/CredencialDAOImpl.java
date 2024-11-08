@@ -20,11 +20,10 @@ public class CredencialDAOImpl {
 
 	public int insertar(Credencial c) {
 		try {
-			ps = con.prepareStatement("INSERT INTO credenciales (id,usuario,password,fk_persona) VALUES (?,?,?,?)");
-			ps.setInt(1, c.getId());
-			ps.setString(2, c.getUsuario());
-			ps.setString(3, c.getPassword());
-			ps.setInt(4, c.getFk_persona());
+			ps = con.prepareStatement("INSERT INTO credenciales (usuario,password,fk_persona) VALUES (?,?,?)");
+			ps.setString(1, c.getUsuario());
+			ps.setString(2, c.getPassword());
+			ps.setInt(3, c.getFk_persona());
 			return ps.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Error al insertar en credenciales " + e.getMessage());

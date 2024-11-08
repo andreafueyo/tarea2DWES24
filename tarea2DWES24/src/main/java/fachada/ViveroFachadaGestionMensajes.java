@@ -39,6 +39,7 @@ private static ViveroFachadaGestionMensajes gestMens;
 		
         int opcion = 0;
         do {
+        	System.out.println("---MENÚ DE GESTIÓN DE MENSAJES---");
     		System.out.println("Seleccione una opcion:");
     		System.out.println("1.  Registrar un nuevo mensaje.");
     		System.out.println("2.  Filtrar mensajes.");

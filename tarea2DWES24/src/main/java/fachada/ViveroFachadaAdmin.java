@@ -43,7 +43,7 @@ public class ViveroFachadaAdmin {
 		
         int opcion = 0;
         do {
-        	System.out.println("--MENÚ ADMINISTRADOR GENERAL--");
+        	System.out.println("---MENÚ ADMINISTRADOR GENERAL---");
     		System.out.println("Seleccione una opcion:");
     		System.out.println("1.  Ver plantas.");
     		System.out.println("2.  Registrar persona.");
@@ -93,7 +93,8 @@ public class ViveroFachadaAdmin {
 		
 		in.nextLine();
 		
-		System.out.println("Introduzca los datos de la nueva persona.");
+		System.out.println("--REGISTRO DE NUEVO USUARIO--");
+		System.out.println("Introduzca los datos del nuevo usuario.");
 		System.out.println();
 		System.out.println("Nombre: ");
 		String nombre = in.nextLine();

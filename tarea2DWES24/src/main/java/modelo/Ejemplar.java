@@ -41,7 +41,12 @@ public class Ejemplar {
 	
 	@Override
 	public String toString() {
-		return "Ejemplar [id=" + id + ", nombre=" + nombre + ", fk_planta=" + fk_planta + "]";
+		String ret ="";
+		ret ="EJEMPLAR";
+		ret += "\tID: " + this.id;
+		ret += "\tNombre: " + this.nombre;
+		ret += "\tfk_planta " + this.fk_planta;
+		return ret;
 	}
 
 }
