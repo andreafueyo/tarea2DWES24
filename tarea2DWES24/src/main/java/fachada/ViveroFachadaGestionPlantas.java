@@ -50,7 +50,7 @@ public class ViveroFachadaGestionPlantas {
     	try {
     		opcion = in.nextInt();
             if (opcion < 1 || opcion > 3) {
-                System.out.println("Opcion incorrecta.");
+                System.out.println("Opción incorrecta.");
                 continue;
             }
             switch (opcion) {
@@ -99,6 +99,7 @@ public class ViveroFachadaGestionPlantas {
 		System.out.println("Código de planta: ");
 		String cod_planta = in.next();
 		
+		in.nextLine();
 		System.out.println();
 		System.out.println("Introduzca los nuevos datos.");
 		System.out.println();

@@ -7,7 +7,6 @@ import control.Controlador;
 import dao.EjemplarDAOImpl;
 import modelo.Ejemplar;
 import modelo.Mensaje;
-import modelo.Persona;
 import modelo.Planta;
 import utils.ConexionBD;
 
@@ -53,13 +52,13 @@ public class ServiciosEjemplar {
 	}
 	
 	public void filtrarEjemplares(String codigos) {
-		List<Ejemplar> lEjemplares = Controlador.getServicios().getServEjemplar().findByTipo(codigos);
+		List<Ejemplar> listaEjemplares = Controlador.getServicios().getServEjemplar().findByTipo(codigos);
 		
-		for(Ejemplar e : lEjemplares) {
+		for(Ejemplar e : listaEjemplares) {
 			System.out.println();
-			List<Mensaje> lMensajes = Controlador.getServicios().getServMensaje().findByEjemplar(e.getId());
-			int num_mensajes = lMensajes.size();
-			String ult_fecha = lMensajes.get(0).getFechahora().toString();
+			List<Mensaje> listaMensajes = Controlador.getServicios().getServMensaje().findByEjemplar(e.getId());
+			int num_mensajes = listaMensajes.size();
+			String ult_fecha = listaMensajes.get(0).getFechahora().toString();
 			System.out.println("Ejemplar "+e.getNombre()+", Num Mensajes: "+num_mensajes+", ult mensaje: "+ult_fecha);
 		}
 	}
@@ -67,10 +66,10 @@ public class ServiciosEjemplar {
 	public void mostrarEjemplares() {
 		System.out.println();
 		System.out.println("Estos son los ejemplares: ");
-	 	List<Ejemplar> lEjemplares = Controlador.getServicios().getServEjemplar().findAll();
+	 	List<Ejemplar> listaEjemplares = Controlador.getServicios().getServEjemplar().findAll();
 		
 		int contador = 1;
-	 	for(Ejemplar e : lEjemplares) {
+	 	for(Ejemplar e : listaEjemplares) {
 	 		System.out.println(contador + ": " + e.toString());
 	 		contador++;
 	 	}

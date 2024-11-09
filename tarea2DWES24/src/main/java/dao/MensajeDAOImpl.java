@@ -33,16 +33,7 @@ public class MensajeDAOImpl {
 		return 0;
 	}
 
-//	public Mensaje findByFecha(String email) {
-//		try {
-//
-//		} catch (SQLException e) {
-//			System.out.println("error al consultar por fecha " + e.getMessage());
-//
-//		}
-//		return null;
-//	}
-	
+
 	public List<Mensaje> findByTipo(String tipo) { 
 		List<Mensaje> listaMensajes = new ArrayList<Mensaje>();
 		try {

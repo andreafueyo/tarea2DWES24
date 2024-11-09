@@ -42,14 +42,14 @@ private static ViveroFachadaGestionEjemplares gestEjemp;
         	System.out.println("---MENÚ DE GESTIÓN DE EJEMPLARES---");
     		System.out.println("Seleccione una opción:");
     		System.out.println("1.  Registrar un nuevo ejemplar.");
-    		System.out.println("2.  Filtrar ejemplares por tipo de planta.");
+    		System.out.println("2.  Filtrar ejemplares por tipo de planta (vacío).");
     		System.out.println("3.  Ver mensajes de seguimiento de un ejemplar.");
-    		System.out.println("4.  Cerrar sesión.");
+    		System.out.println("4.  Volver al menú anterior.");
     		
     		try {
     			opcion = in.nextInt();
     			if (opcion < 1 || opcion > 4) {
-    				System.out.println("Opcion incorrecta.");
+    				System.out.println("Opción incorrecta.");
     				continue;
     			}
             
@@ -77,17 +77,15 @@ private static ViveroFachadaGestionEjemplares gestEjemp;
 	
 	public void registrarEjemplar() {
 		
+		in.nextLine();
 		System.out.println("A continuación se muestran todas las plantas disponibles. Introduce el código de la planta sobre la que quieres crear un ejemplar nuevo.");
 		System.out.println();
 		portal.mostarPlantas();
-		System.out.println();
 		System.out.println("Código de planta: ");
-		in.nextLine();
 		String cod_planta = in.nextLine();
 		
 		while(!Controlador.getServicios().getServPlanta().existePlanta(cod_planta)) {
 			System.out.println("Código de planta incorrecto, vuelva a intentarlo: ");
-			in.nextLine();
 			cod_planta = in.nextLine();
 		}
 		Planta p = Controlador.getServicios().getServPlanta().findByCod(cod_planta);
@@ -95,34 +93,11 @@ private static ViveroFachadaGestionEjemplares gestEjemp;
 				
 	}
 	
+	
 	public void filtrarEjemplares() {
-
-//		System.out.println("A continuación se muestran todas las plantas disponibles. Introduce los códigos de plantas sobre los que quieres buscar ejemplares. Para finalizar, introduzca 'fin'.");
-//		System.out.println();
-//		portal.mostarPlantas();
-//		System.out.println();
-//		String cod_planta = ""; //auxiliar para comprobar cada cadena introducida
-//		String codigos = "";	//cadena en la que se acumulan
-//        boolean primeraCadena = true;
-//		
-//		while(!cod_planta.equals("fin")) {
-//			System.out.println("Código de planta: ");
-//			cod_planta = in.next();
-//			
-//            if (!primeraCadena) {
-//                codigos += (",");
-//            } else {
-//                primeraCadena = false; // cambiar la bandera después de la primera cadena
-//            }
-//            
-//            if(!cod_planta.equals("fin")) {
-//                codigos += cod_planta;
-//            }
-//		}
-		
-//		Controlador.getServicios().getServEjemplar().filtrarEjemplares(codigos);
 		
 	}
+	
 	
 	public void verMensajes() {
 	

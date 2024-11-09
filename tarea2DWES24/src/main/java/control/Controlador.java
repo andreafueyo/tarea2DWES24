@@ -30,6 +30,7 @@ private static Controlador servicios;
 		servPersona = new ServiciosPersona();		
 	}
 
+	
 	public ServiciosPlanta getServPlanta() {
 		return servPlanta;
 	}

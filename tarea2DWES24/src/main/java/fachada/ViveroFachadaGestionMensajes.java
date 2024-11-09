@@ -42,13 +42,13 @@ private static ViveroFachadaGestionMensajes gestMens;
         	System.out.println("---MENÚ DE GESTIÓN DE MENSAJES---");
     		System.out.println("Seleccione una opcion:");
     		System.out.println("1.  Registrar un nuevo mensaje.");
-    		System.out.println("2.  Filtrar mensajes.");
+    		System.out.println("2.  Filtrar mensajes (vacío).");
     		System.out.println("3.  Volver al menú anterior.");
             
     	try {
     		opcion = in.nextInt();
             if (opcion < 1 || opcion > 3) {
-                System.out.println("Opcion incorrecta.");
+                System.out.println("Opción incorrecta.");
                 continue;
             }
             switch (opcion) {
@@ -76,9 +76,10 @@ private static ViveroFachadaGestionMensajes gestMens;
 		System.out.println();
 		System.out.println("Código de ejemplar: ");
 		int id_ej = in.nextInt();
+		in.nextLine();
 		System.out.println();
 		System.out.println("Mensaje: ");
-		String mensaje = in.next();
+		String mensaje = in.nextLine();
 
 		Controlador.getServicios().getServMensaje().registrarMensaje(id_ej, portal.getCredencial().getFk_persona(), mensaje);
 		

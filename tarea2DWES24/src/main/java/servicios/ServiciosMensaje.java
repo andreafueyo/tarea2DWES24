@@ -2,14 +2,8 @@ package servicios;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Scanner;
-
-import control.Controlador;
-import dao.EjemplarDAOImpl;
 import dao.MensajeDAOImpl;
-import modelo.Ejemplar;
 import modelo.Mensaje;
-import modelo.Persona;
 import utils.ConexionBD;
 
 public class ServiciosMensaje {
@@ -25,9 +19,6 @@ public class ServiciosMensaje {
 	public int insertar(Mensaje m) {
 		return mensajeDAOImpl.insertar(m);
 	}
-	
-//	public Mensaje findByFecha(String email) {
-//	}
 	
 	public List<Mensaje> findByTipo(String tipo) { 
 		return mensajeDAOImpl.findByTipo(tipo);

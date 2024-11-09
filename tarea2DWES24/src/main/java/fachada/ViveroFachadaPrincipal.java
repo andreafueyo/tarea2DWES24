@@ -92,11 +92,10 @@ public class ViveroFachadaPrincipal {
 				} else {
 					loginCorrecto = true;
 					credencial = Controlador.getServicios().getServCredencial().findByUsuario(c.getUsuario());
-					System.out.println("outprint login"+credencial);
 				}
 			
 			}
-			//USUARIO: andrea CONTRASEÑA: andrea
+			//USUARIO: andrea CONTRASEÑA: andrea || USUARIO: a CONTRASEÑA: a
 			System.out.println("¡Hola, "+c.getUsuario()+"!, ¿Qué desea hacer?");
 			ViveroFachadaPrincipal.personal.mostrarMenuPersonal();		
 		}

@@ -67,7 +67,6 @@ public class ServiciosCredencial {
 	public void registrarCredencial(String usuario, String password, String email) {
 				
 		int id_persona = Controlador.getServicios().getServPersona().findByEmail(email).getId();
-		System.out.println(id_persona);
 		Credencial c = new Credencial(usuario, password, id_persona);
 		
 		this.insertar(c);
