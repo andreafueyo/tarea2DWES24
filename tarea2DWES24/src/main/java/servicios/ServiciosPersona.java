@@ -43,11 +43,9 @@ public class ServiciosPersona {
 		return personaDAOImpl.findAll();
 	}
 
-	public void registrarPersona(String nombre, String email) {
-
+	public int registrarPersona(String nombre, String email) {
 		Persona p = new Persona(nombre,email);
-		
-		this.insertar(p);
+		return this.insertar(p);
 	}
 
 }

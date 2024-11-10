@@ -14,6 +14,8 @@ import servicios.ServiciosPlanta;
 
 public class ViveroFachadaGestionPlantas {
 	
+	Scanner in = new Scanner(System.in);
+	
 	private static ViveroFachadaGestionPlantas gestPlantas;
 	
 	private static ViveroFachadaPrincipal portal = ViveroFachadaPrincipal.getPortal();
@@ -27,9 +29,7 @@ public class ViveroFachadaGestionPlantas {
 	ServiciosPersona perServ = conServicios.getServiciosPersona();
 	ServiciosPlanta plServ = conServicios.getServiciosPlanta();
 	
-	Scanner in = new Scanner(System.in);
-	
-	
+
 	public static ViveroFachadaGestionPlantas getPortal() {
 		if (gestPlantas==null)
 			gestPlantas = new ViveroFachadaGestionPlantas();

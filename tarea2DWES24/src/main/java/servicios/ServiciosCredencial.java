@@ -64,12 +64,12 @@ public class ServiciosCredencial {
 		return credencialDAOImpl.findAll();
 	}
 
-	public void registrarCredencial(String usuario, String password, String email) {
+	public int registrarCredencial(String usuario, String password, String email) {
 				
 		int id_persona = Controlador.getServicios().getServPersona().findByEmail(email).getId();
 		Credencial c = new Credencial(usuario, password, id_persona);
 		
-		this.insertar(c);
+		return this.insertar(c);
 	}	
 	
 }

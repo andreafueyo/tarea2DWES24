@@ -20,18 +20,16 @@ public class ViveroFachadaPrincipal {
 	private static ViveroFachadaAdmin admin = ViveroFachadaAdmin.getPortal();
 	
 	private Credencial credencial;
-
-	Scanner in = new Scanner(System.in);
 	
 	ViveroServiciosConexion conServicios = ViveroServiciosConexion.getServicios();
 
-	
 	ServiciosCredencial crServ = conServicios.getServiciosCredencial();
 	ServiciosEjemplar ejServ = conServicios.getServiciosEjemplar();
 	ServiciosMensaje menServ = conServicios.getServiciosMensaje();
 	ServiciosPersona perServ = conServicios.getServiciosPersona();
 	ServiciosPlanta plServ = conServicios.getServiciosPlanta();
 	
+	Scanner in = new Scanner(System.in);
 	
 	
 	public static ViveroFachadaPrincipal getPortal() {

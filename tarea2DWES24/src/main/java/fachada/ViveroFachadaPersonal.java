@@ -12,9 +12,9 @@ import servicios.ServiciosPlanta;
 
 public class ViveroFachadaPersonal {
 	
-		private static ViveroFachadaPersonal personal;
-
 		Scanner in = new Scanner(System.in);
+	
+		private static ViveroFachadaPersonal personal;
 		
 		private static ViveroFachadaPrincipal portal = ViveroFachadaPrincipal.getPortal();
 		private static ViveroFachadaGestionEjemplares gestEjemp = ViveroFachadaGestionEjemplares.getPortal();

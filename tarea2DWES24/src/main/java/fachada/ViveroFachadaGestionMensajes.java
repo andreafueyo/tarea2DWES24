@@ -14,6 +14,8 @@ import servicios.ServiciosPlanta;
 public class ViveroFachadaGestionMensajes {
 
 private static ViveroFachadaGestionMensajes gestMens;
+
+	Scanner in = new Scanner(System.in);
 	
 	private static ViveroFachadaPrincipal portal = ViveroFachadaPrincipal.getPortal();
 	
@@ -24,8 +26,6 @@ private static ViveroFachadaGestionMensajes gestMens;
 	ServiciosMensaje menServ = conServicios.getServiciosMensaje();
 	ServiciosPersona perServ = conServicios.getServiciosPersona();
 	ServiciosPlanta plServ = conServicios.getServiciosPlanta();
-	
-	Scanner in = new Scanner(System.in);
 	
 	
 	public static ViveroFachadaGestionMensajes getPortal() {
@@ -40,7 +40,7 @@ private static ViveroFachadaGestionMensajes gestMens;
         int opcion = 0;
         do {
         	System.out.println("---MENÚ DE GESTIÓN DE MENSAJES---");
-    		System.out.println("Seleccione una opcion:");
+    		System.out.println("Seleccione una opción:");
     		System.out.println("1.  Registrar un nuevo mensaje.");
     		System.out.println("2.  Filtrar mensajes (vacío).");
     		System.out.println("3.  Volver al menú anterior.");

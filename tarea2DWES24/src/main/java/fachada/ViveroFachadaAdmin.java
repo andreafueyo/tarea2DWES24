@@ -96,19 +96,34 @@ public class ViveroFachadaAdmin {
 		System.out.println("--REGISTRO DE NUEVO USUARIO--");
 		System.out.println("Introduzca los datos del nuevo usuario.");
 		System.out.println();
-		System.out.println("Nombre: ");
-		String nombre = in.nextLine();
-		System.out.println("Email: ");
-		String email = in.nextLine();
 		
-		Controlador.getServicios().getServPersona().registrarPersona(nombre, email);	
+		String nombre;
+		String email;
 		
+		do {
+			System.out.println("Nombre: ");
+			nombre = in.nextLine();
+			System.out.println("Email: ");
+			email = in.nextLine();
+			if(nombre.contains(" ") || email.contains(" ")) {
+				System.out.println("Nombre o email no válidos. Introduzca de nuevo los datos sin espacios.");
+			}
+		} while (nombre.contains(" ") || email.contains(" ") || 
+				Controlador.getServicios().getServPersona().registrarPersona(nombre, email) == 0);	
+		
+		String usuario;
+		String contrasena;
+		do {
 		System.out.println("Usuario: ");
-		String usuario = in.next();
+		usuario = in.next();
 		System.out.println("Contraseña: ");
-		String contraseña = in.next();
+		contrasena = in.next();
+		if(usuario.contains(" ") || contrasena.contains(" ")) {
+			System.out.println("Usuario o contraseña no válidos. Introduzca de nuevo los datos sin espacios.");
+			}
+		} while (usuario.contains(" ") || contrasena.contains(" ") ||
+				Controlador.getServicios().getServCredencial().registrarCredencial(usuario,contrasena, email) == 0);
 		
-		Controlador.getServicios().getServCredencial().registrarCredencial(usuario,contraseña, email);
 	}
 	
 }
